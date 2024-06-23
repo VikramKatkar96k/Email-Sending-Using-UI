@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Successful</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .message-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .message-container h1 {
+            color: #4CAF50;
+        }
+        .message-container p, .message-container h3 {
+            margin: 10px 0;
+        }
+        .message-container a {
+            display: inline-block;
+            margin-top: 10px;
+            text-decoration: none;
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <div id="success">
+        <div class="message-container">
+            <h1>Registration Successful!</h1>
+            <h3 th:text="${succmsg}"></h3>
+            <p>You will be redirected to the homepage in <span id="countdown">10</span> seconds.</p>
+            <a href="/register">Home</a>
+        </div>
+    </div>
+    <script>
+        let countdownElement = document.getElementById('countdown');
+        let countdownTime = 10;
+
+        function updateCountdown() {
+            if (countdownTime > 0) {
+                countdownTime--;
+                countdownElement.textContent = countdownTime;
+            } else {
+                window.location.href = '/register';
+            }
+        }
+
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
